@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pm">8dp</dimen>
+    <dimen name="title_size">48sp</dimen>
+    <dimen name="ntext_size">24sp</dimen>
+    <dimen name="stext_size">18sp</dimen>
+    <dimen name="width_btn">180dp</dimen>
+    <dimen name="width_tv">360dp</dimen>
+</resources>

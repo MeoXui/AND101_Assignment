@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Assignment</string>
+    <string name="s_login">Đăng nhập</string>
+    <string name="s_signup">Đăng ký</string>
+    <string name="s_pass">Mật khẩu</string>
+    <string name="s_user">Tên đăng nhập</string>
+    <string name="s_email">Email</string>
+    <string name="s_depart">Phòng ban</string>
+    <string name="s_logout">Đăng xuất</string>
+    <string name="s_staff">Nhân viên</string>
+</resources>

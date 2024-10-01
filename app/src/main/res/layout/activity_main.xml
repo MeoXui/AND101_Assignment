@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/pm"
+    tools:context=".MainAct">
+
+    <Button
+        android:id="@+id/btn_depart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/pm"
+        android:backgroundTint="@color/blue"
+        android:drawableLeft="@drawable/ic_house_white_48x48"
+        android:text="@string/s_depart"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_staff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/pm"
+        android:backgroundTint="@color/blue"
+        android:drawableLeft="@drawable/ic_person_white_48x48"
+        android:text="@string/s_staff"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/pm"
+        android:backgroundTint="@color/red"
+        android:drawableLeft="@drawable/ic_exit_to_app_white_48x48"
+        android:text="@string/s_logout"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+</LinearLayout>
