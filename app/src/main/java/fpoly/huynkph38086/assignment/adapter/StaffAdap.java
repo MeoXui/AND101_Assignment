@@ -1,7 +1,6 @@
 package fpoly.huynkph38086.assignment.adapter;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +14,16 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 import fpoly.huynkph38086.assignment.R;
+import fpoly.huynkph38086.assignment.StaffAct;
 import fpoly.huynkph38086.assignment.model.Staff;
 
 public class StaffAdap extends ArrayAdapter<Staff> {
-    Context mContext;
+    StaffAct activity;
     int itemLayout;
 
-    public StaffAdap(Context context, List<Staff> list) {
-        super(context, R.layout.item_staff, list);
-        mContext = context;
+    public StaffAdap(StaffAct activity, List<Staff> list) {
+        super(activity, R.layout.item_staff, list);
+        this.activity = activity;
         itemLayout = R.layout.item_staff;
     }
 
@@ -32,7 +32,7 @@ public class StaffAdap extends ArrayAdapter<Staff> {
     @Override
     public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
         if (view == null)
-            view = LayoutInflater.from(mContext).inflate(itemLayout, null);
+            view = LayoutInflater.from(activity).inflate(itemLayout, null);
 
         TextView tvID = view.findViewById(R.id.tv_id),
                 tvName = view.findViewById(R.id.tv_name),
@@ -45,14 +45,14 @@ public class StaffAdap extends ArrayAdapter<Staff> {
             tvID.setText(item.id);
             tvName.setText(item.name);
             switch (item.depart) {
-                case 1: tvDepart.setText("Nhân sự"); break;
-                case 2: tvDepart.setText("Hành chính"); break;
-                case 3: tvDepart.setText("Đào tạo"); break;
+                case 0: tvDepart.setText("Nhân sự"); break;
+                case 1: tvDepart.setText("Hành chính"); break;
+                case 2: tvDepart.setText("Đào tạo"); break;
                 default: tvDepart.setText("chưa có phòng ban");
             }
-        }
 
-        ibDLT.setOnClickListener(v -> {});
+            ibDLT.setOnClickListener(v -> activity.delete(item.id));
+        }
 
         return view;
     }

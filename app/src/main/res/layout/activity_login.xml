@@ -20,6 +20,7 @@
         android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_un"
         android:layout_width="@dimen/width_tv"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/pm"
@@ -28,18 +29,18 @@
         app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_un"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_edittext_1"
-            android:hint="Tên đăng nhập hoặc email"
-            android:inputType="text|textEmailAddress"
+            android:hint="@string/s_user"
+            android:inputType="text"
             android:maxLines="1"
             android:singleLine="true"
             android:textSize="@dimen/ntext_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_pw"
         android:layout_width="@dimen/width_tv"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/pm"
@@ -48,7 +49,6 @@
         app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_edittext_1"

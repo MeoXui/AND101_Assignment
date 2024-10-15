@@ -1,6 +1,9 @@
 package fpoly.huynkph38086.assignment;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -11,7 +14,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class ListAct extends AppCompatActivity {
+import java.util.List;
+
+public abstract class ListAct extends AppCompatActivity {
+    EditText ed;
     ListView lv;
     FloatingActionButton fab;
 
@@ -26,6 +32,7 @@ public class ListAct extends AppCompatActivity {
             return insets;
         });
 
+        ed = findViewById(R.id.ed);
         lv = findViewById(R.id.lv);
         fab = findViewById(R.id.fab);
     }

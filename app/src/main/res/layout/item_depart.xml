@@ -29,10 +29,4 @@
             android:textSize="@dimen/ntext_size"
             android:textStyle="bold" />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/pm"
-        android:background="@color/black" />
 </LinearLayout>

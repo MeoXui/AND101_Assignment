@@ -1,9 +1,11 @@
 package fpoly.huynkph38086.assignment.model;
 
-public class Staff {
+import java.io.Serializable;
+
+public class Staff implements Serializable {
     public String id;
     public String name;
-    public int depart; //1: Nhân sự; 2: Hành chính; 3: Đào tạo;
+    public int depart; //0: Nhân sự; 1: Hành chính; 2: Đào tạo;
 
     public Staff(String id, String name, int depart) {
         this.id = id;
