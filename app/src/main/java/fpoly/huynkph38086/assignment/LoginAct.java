@@ -1,6 +1,7 @@
 package fpoly.huynkph38086.assignment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -44,11 +45,16 @@ public class LoginAct extends AppCompatActivity {
         btnIn = findViewById(R.id.btn_in);
         btnUp = findViewById(R.id.btn_up);
 
-        btnIn.setOnClickListener(v -> validate());
+        reme();
+
+        chkRe.setOnCheckedChangeListener((buttonView, isChecked) -> memo());
+
+        btnIn.setOnClickListener(v -> login());
+
         btnUp.setOnClickListener(v -> startActivity(SignUpAct.class));
     }
 
-    void validate() {
+    void login() {
         String sUn = tilUn.getEditText().getText().toString();
         String sPw = tilPw.getEditText().getText().toString();
 
@@ -84,17 +90,42 @@ public class LoginAct extends AppCompatActivity {
                 tilUn.setErrorEnabled(false);
                 tilUn.setError(null);
                 if (sPw.equals(a.password)) {
-                    startActivity(MainAct.class);
                     tilPw.setErrorEnabled(false);
                     tilPw.setError(null);
+                    memo();
+                    startActivity(MainAct.class);
+                    return;
                 } else {
                     tilPw.setErrorEnabled(true);
                     tilPw.setError("Sai mật khẩu");
                 }
+                return;
             } else {
                 tilUn.setErrorEnabled(true);
                 tilUn.setError("Tài khoản chưa tồn tại");
             }
+        }
+    }
+
+    void memo() {
+        SharedPreferences sp = getSharedPreferences("re", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        boolean re = chkRe.isChecked();
+        editor.putBoolean("re", re);
+        if (re) {
+            editor.putString("un", tilUn.getEditText().getText().toString());
+            editor.putString("pw", tilPw.getEditText().getText().toString());
+        }
+        editor.apply();
+    }
+
+    void reme() {
+        SharedPreferences sp = getSharedPreferences("re", MODE_PRIVATE);
+        boolean re = sp.getBoolean("re", false);
+        chkRe.setChecked(re);
+        if (re) {
+            tilUn.getEditText().setText(sp.getString("un", ""));
+            tilPw.getEditText().setText(sp.getString("pw", ""));
         }
     }
 

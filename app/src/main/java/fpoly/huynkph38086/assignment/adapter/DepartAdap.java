@@ -27,6 +27,15 @@ public class DepartAdap extends ArrayAdapter<String> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
+        return fun(position, view);
+    }
+
+    @Override
+    public View getDropDownView(int position, @Nullable View view, @NonNull ViewGroup parent) {
+        return fun(position, view);
+    }
+
+    View fun(int position, @Nullable View view) {
         if (view == null)
             view = LayoutInflater.from(mContext).inflate(itemLayout, null);
 

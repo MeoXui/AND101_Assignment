@@ -1,9 +1,13 @@
 package fpoly.huynkph38086.assignment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -20,6 +24,20 @@ import fpoly.huynkph38086.assignment.model.Staff;
 public class StaffAct extends ListAct {
     List<Staff> list;
     StaffAdap adapter;
+
+    public ActivityResultLauncher<Intent> arl = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), o -> {
+        if (o.getResultCode() == AddEditAct.ResultCode) {
+            Intent i = o.getData();
+            assert i != null;
+            Bundle b = i.getExtras();
+            assert b != null;
+            Staff staff = new Staff();
+            staff.id = b.getInt("id");
+            staff.name = b.getString("name");
+            staff.depart = b.getInt("depart");
+            update(staff);
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +62,12 @@ public class StaffAct extends ListAct {
             public void afterTextChanged(Editable s) {
 
             }
+        });
+
+        fab.setOnClickListener(v -> {
+            Intent i = new Intent(this, AddEditAct.class);
+            i.putExtra("id", -1);
+            arl.launch(i);
         });
     }
 
@@ -84,23 +108,27 @@ public class StaffAct extends ListAct {
     }
     
     public void add(Staff staff) {
+        if (list.isEmpty()) staff.id = 0;
+        else staff.id = list.get(list.size() - 1).id + 1;
         list.add(staff);
         write();
     }
 
     public void update(Staff staff) {
-        for (Staff s : list)
-            if (s.id.equals(staff.id)) {
+        for (Staff s : list) {
+            if (staff.id < 0) break;
+            if (s.id == staff.id) {
                 list.add(list.indexOf(s), staff);
                 list.remove(s);
                 write();
                 return;
             }
+        }
         add(staff);
     }
 
-    public void delete(String id) {
-        list.removeIf(s -> s.id.equals(id));
+    public void delete(int id) {
+        list.removeIf(s -> s.id == id);
         write();
     }
 }

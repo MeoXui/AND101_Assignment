@@ -1,6 +1,7 @@
 package fpoly.huynkph38086.assignment.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
+import fpoly.huynkph38086.assignment.AddEditAct;
 import fpoly.huynkph38086.assignment.R;
 import fpoly.huynkph38086.assignment.StaffAct;
 import fpoly.huynkph38086.assignment.model.Staff;
@@ -42,14 +44,17 @@ public class StaffAdap extends ArrayAdapter<Staff> {
         Staff item = getItem(position);
 
         if (item != null) {
-            tvID.setText(item.id);
-            tvName.setText(item.name);
-            switch (item.depart) {
-                case 0: tvDepart.setText("Nhân sự"); break;
-                case 1: tvDepart.setText("Hành chính"); break;
-                case 2: tvDepart.setText("Đào tạo"); break;
-                default: tvDepart.setText("chưa có phòng ban");
-            }
+            view.setOnClickListener(v -> {
+                Intent i = new Intent(activity, AddEditAct.class);
+                i.putExtra("id", item.id);
+                i.putExtra("name", item.name);
+                i.putExtra("depart", item.depart);
+                activity.arl.launch(i);
+            });
+
+            tvID.setText("NV" + item.id);
+            tvName.setText("Họ tên: " + item.name);
+            tvDepart.setText("Phòng ban: " + (item.depart == 0 ? "Nhân sự" : (item.depart == 1 ? "Hành chính" : (item.depart == 2 ? "Đào tạo" : "chưa có phòng ban"))));
 
             ibDLT.setOnClickListener(v -> activity.delete(item.id));
         }
